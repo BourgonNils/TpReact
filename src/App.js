@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Card from'./Card.js';
 import _ from 'lodash';
@@ -15,21 +14,17 @@ class App extends Component {
     return (<Card name={name} number={number}/>);
   }
 
-
-  //need to randomize
   printCards(champs){
-    var champs1 = champs;
-    _.shuffle(champs1);
-    _.shuffle(champs);
-    var allCards = document.createElement("section");
-    allCards.appendChild(this.printCard("Sion",2));
-    return allCards;
+    var ret = [];
+    //Arrow function necessary ?
+    champs.map((champ)=>{
+      ret.push(this.printCard(champ, "0"));
+      ret.push(this.printCard(champ, "1"));
+    });
+    return _.shuffle(ret);
   }
 
-
-
   render() {
-
     return (
       <div className="App">
 
